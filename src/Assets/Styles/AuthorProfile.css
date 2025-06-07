@@ -1,0 +1,254 @@
+/* AuthorProfile.css - Smaller fonts + Responsive design */
+
+.ap-wrapper-uniq {
+  min-height: 100vh;
+  background: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+  padding: 40px 12px;
+  font-family: 'Poppins', sans-serif;
+  color: #2c3e50;
+  display: flex;
+  justify-content: center;
+}
+
+.ap-container-uniq {
+  max-width: 900px;
+  width: 100%;
+  background: #ffffffdd;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(102, 166, 255, 0.3);
+  padding: 30px 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  backdrop-filter: saturate(180%) blur(20px);
+}
+
+.ap-header-uniq {
+  text-align: center;
+  padding-bottom: 25px;
+  border-bottom: 2px solid #66a6ff;
+}
+
+.ap-avatar-uniq {
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #4a90e2;
+  box-shadow: 0 0 15px #4a90e2aa;
+  background: #e1f0ff;
+}
+
+.ap-avatar-uniq img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ap-name-uniq {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #1a2935;
+  margin-bottom: 5px;
+  letter-spacing: 1px;
+}
+
+.ap-username-uniq {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #4a90e2;
+  margin-bottom: 12px;
+  user-select: text;
+  letter-spacing: 0.5px;
+}
+
+.ap-about-uniq {
+  font-size: 0.9rem;
+  color: #34495e;
+  max-width: 650px;
+  margin: 0 auto;
+  font-style: normal;
+  line-height: 1.4;
+  user-select: text;
+  padding: 0 10px;
+}
+
+.ap-section-title-uniq {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1a2935;
+  margin-bottom: 24px;
+  border-left: 4px solid #4a90e2;
+  padding-left: 10px;
+  user-select: none;
+}
+
+.ap-posts-uniq {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.ap-post-card-uniq {
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(74, 144, 226, 0.15);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.ap-post-card-uniq:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 32px rgba(74, 144, 226, 0.25);
+}
+
+.ap-post-img-uniq {
+  width: 100%;
+  height: 140px;
+  object-fit: fill;
+  border-bottom: 1px solid #dde7f3;
+  background: #f0f4ff;
+}
+
+.ap-post-content-uniq {
+  padding: 14px 18px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ap-post-content-uniq h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1a2935;
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+
+.ap-post-content-uniq p {
+  font-size: 0.9rem;
+  color: #64748b;
+  line-height: 1.3;
+  flex-grow: 1;
+}
+
+.ap-no-posts-uniq,
+.ap-loading-uniq,
+.ap-error-uniq {
+  font-size: 1.1rem;
+  color: #334e68;
+  text-align: center;
+  margin-top: 40px;
+  user-select: none;
+  font-weight: 500;
+}
+
+/* Responsive tweaks */
+
+@media (max-width: 768px) {
+  .ap-wrapper-uniq {
+    padding: 30px 10px;
+  }
+
+  .ap-container-uniq {
+    padding: 25px 20px;
+  }
+
+  .ap-avatar-uniq {
+    width: 90px;
+    height: 90px;
+    border-width: 3px;
+  }
+
+  .ap-name-uniq {
+    font-size: 1.5rem;
+  }
+
+  .ap-username-uniq {
+    font-size: 0.9rem;
+  }
+
+  .ap-about-uniq {
+    font-size: 0.85rem;
+    max-width: 100%;
+    padding: 0 5px;
+  }
+
+  .ap-section-title-uniq {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    border-left-width: 3px;
+    padding-left: 8px;
+  }
+
+  .ap-posts-uniq {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 18px;
+  }
+
+  .ap-post-img-uniq {
+    height: 120px;
+  }
+
+  .ap-post-content-uniq h4 {
+    font-size: 1rem;
+  }
+
+  .ap-post-content-uniq p {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ap-container-uniq {
+    padding: 20px 15px;
+  }
+
+  .ap-avatar-uniq {
+    width: 75px;
+    height: 75px;
+    border-width: 2px;
+    margin-bottom: 12px;
+  }
+
+  .ap-name-uniq {
+    font-size: 1.3rem;
+  }
+
+  .ap-username-uniq {
+    font-size: 0.8rem;
+  }
+
+  .ap-about-uniq {
+    font-size: 0.8rem;
+  }
+
+  .ap-section-title-uniq {
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+  }
+
+  .ap-posts-uniq {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .ap-post-img-uniq {
+    height: 100px;
+  }
+
+  .ap-post-content-uniq h4 {
+    font-size: 0.95rem;
+  }
+
+  .ap-post-content-uniq p {
+    font-size: 0.8rem;
+  }
+}

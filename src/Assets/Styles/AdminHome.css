@@ -1,0 +1,231 @@
+/* Main layout */
+.admin-home-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  /* Fade in whole page */
+  animation: fadeInPage 0.8s ease forwards;
+}
+
+@keyframes fadeInPage {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+/* Content beside sidebar */
+.admin-home-main-content {
+  flex: 1;
+  padding: 30px;
+  background-color: #ffffff;
+  overflow-y: auto;
+  /* Smooth fade and slight slide */
+  animation: slideFadeIn 0.7s ease forwards;
+}
+
+@keyframes slideFadeIn {
+  from {opacity: 0; transform: translateY(15px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* Page title */
+.admin-home-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #343a40;
+  /* Text shadow subtle glow on hover */
+  transition: text-shadow 0.3s ease;
+}
+.admin-home-title:hover {
+  text-shadow: 0 0 8px #007bff88;
+}
+
+/* Dashboard card layout */
+.admin-home-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+}
+
+/* Individual dashboard card */
+.admin-home-card {
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  /* Subtle pop in animation */
+  animation: popIn 0.4s ease forwards;
+}
+
+@keyframes popIn {
+  from {opacity: 0; transform: scale(0.95);}
+  to {opacity: 1; transform: scale(1);}
+}
+
+.admin-home-card:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3);
+}
+
+.admin-home-card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #007bff;
+}
+
+.admin-home-card p {
+  font-size: 24px;
+  font-weight: bold;
+  color: #212529;
+  /* Animate number counting (optional if you want a cool effect) */
+  animation: fadeInNumbers 1s ease forwards;
+}
+
+@keyframes fadeInNumbers {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.admin-home-card button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: #17a2b8;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 8px rgba(23, 162, 184, 0.3);
+}
+
+.admin-home-card button:hover {
+  background-color: #138496;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(19, 132, 150, 0.6);
+}
+
+/* Modal background */
+.admin-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  /* Fade in modal */
+  animation: fadeInModal 0.4s ease forwards;
+}
+
+@keyframes fadeInModal {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+/* Modal content box */
+.admin-modal-content {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+  max-height: 80vh;
+  overflow-y: auto;
+  /* Slide up modal */
+  animation: slideUpModal 0.4s ease forwards;
+}
+
+@keyframes slideUpModal {
+  from {opacity: 0; transform: translateY(30px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+.admin-modal-content h4 {
+  margin-bottom: 20px;
+  color: #343a40;
+  /* Subtle fade in */
+  animation: fadeInText 0.5s ease forwards;
+}
+
+@keyframes fadeInText {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+/* List of pending posts */
+.admin-modal-content ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.admin-modal-content li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 10px;
+  border-bottom: 1px solid #dee2e6;
+  font-size: 16px;
+  /* Smooth hover highlight */
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.admin-modal-content li:hover {
+  background-color: #e9f5fb;
+}
+
+/* Modal buttons */
+.admin-modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.admin-modal-content button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.admin-modal-content button:first-of-type {
+  background-color: #28a745;
+  color: white;
+  box-shadow: 0 4px 8px rgba(40, 167, 69, 0.4);
+}
+
+.admin-modal-content button:first-of-type:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(33, 136, 56, 0.6);
+}
+
+.admin-modal-content button:last-of-type {
+  background-color: #dc3545;
+  color: white;
+  box-shadow: 0 4px 8px rgba(220, 53, 69, 0.4);
+}
+
+.admin-modal-content button:last-of-type:hover {
+  background-color: #c82333;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(200, 35, 51, 0.6);
+}
+
+.admin-modal-content ul {
+  max-height: 300px;
+  overflow-y: auto;
+}

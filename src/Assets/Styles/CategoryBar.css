@@ -1,0 +1,65 @@
+.category-bar-techblog {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 20px;
+  background-color: #f9f9f9;
+  border-radius: 25px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  user-select: none;
+  /* background: linear-gradient(to right, #97a8d4,#5576eb); */
+  margin-top: 20px;
+}
+
+.category-pill-techblog {
+  padding: 6px 14px;
+  font-weight: 600;
+  font-size: 0.75rem; /* smaller font */
+  color: #444;
+  background-color: #fff;
+  border: 2px solid #ddd;
+  border-radius: 30px;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.2s ease;
+  user-select: none;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  white-space: nowrap;
+}
+
+.category-pill-techblog:hover,
+.category-pill-techblog:focus {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
+  transform: scale(1.05);
+  outline: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .category-bar-techblog {
+    padding: 12px 15px;
+    gap: 8px;
+  }
+  .category-pill-techblog {
+    padding: 5px 12px;
+    font-size: 0.65rem; /* smaller */
+  }
+}
+
+@media (max-width: 480px) {
+  .category-bar-techblog {
+    padding: 10px 12px;
+    gap: 6px;
+  }
+  .category-pill-techblog {
+    padding: 4px 10px;
+    font-size: 0.55rem; /* very small */
+  }
+}

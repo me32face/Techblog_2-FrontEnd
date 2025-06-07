@@ -1,0 +1,58 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css");
+
+.userlogin-wrapper {
+  background: linear-gradient(to right, #eaf2f8, #ffffff);
+}
+
+/* Only the visible login area takes full viewport height */
+.userlogin-fullscreen {
+  height: 92vh;
+  padding: 20px;
+  background-image: url("https://t3.ftcdn.net/jpg/08/68/51/04/240_F_868510427_vsvN67LV1zSmLMyXMOFG05tRCmTAj1xL.jpg");
+  background-size:cover;
+  background-repeat: no-repeat;
+}
+
+/* Login box styles */
+.userlogin-form {
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  padding: 35px 30px;
+  width: 100%;
+  max-width: 400px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Slide-in + hover effects */
+.userlogin-form:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.2);
+}
+
+.userlogin-title {
+  font-weight: bold;
+  margin-bottom: 25px;
+  color: #1a1a1a;
+}
+
+.userlogin-btn {
+  transition: all 0.3s ease;
+}
+
+.userlogin-btn:hover {
+  background-color: #084298;
+  transform: scale(1.02);
+}
+
+.userlogin-link {
+  color: #0d6efd;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.userlogin-link:hover {
+  color: #084298;
+  text-decoration: underline !important;
+}

@@ -1,0 +1,85 @@
+/* src/Assets/Styles/Footer.css */
+
+.footer-techblog {
+  background: linear-gradient(135deg, #1e1e2f, #292944);
+  color: #f0f0f0;
+  padding: 40px 20px 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.footer-container-techblog {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-brand-techblog h2 {
+  color: #00ffff;
+  margin-bottom: 10px;
+}
+
+.footer-brand-techblog p {
+  color: #c0c0c0;
+  max-width: 300px;
+}
+
+.footer-links-techblog h4,
+.footer-social-techblog h4 {
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.footer-links-techblog ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links-techblog li {
+  margin-bottom: 8px;
+}
+
+.footer-links-techblog a {
+  color: #c0c0c0;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links-techblog a:hover {
+  color: #00ffff;
+}
+
+.footer-icons-techblog a {
+  color: #c0c0c0;
+  margin-right: 15px;
+  font-size: 1.2rem;
+  transition: color 0.3s;
+}
+
+.footer-icons-techblog a:hover {
+  color: #00ffff;
+}
+
+.footer-bottom-techblog {
+  text-align: center;
+  margin-top: 40px;
+  border-top: 1px solid #444;
+  padding-top: 15px;
+  color: #999;
+  font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-container-techblog {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-icons-techblog {
+    justify-content: center;
+  }
+}

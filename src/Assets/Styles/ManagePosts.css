@@ -1,0 +1,145 @@
+/* Container and Page Title */
+.unique-manage-posts-container {
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+  min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #2c3e50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.unique-manage-posts-title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  margin-bottom: 30px;
+  color: #d6336c;
+  letter-spacing: 1.5px;
+  text-shadow: 1px 1px 3px rgba(214, 51, 108, 0.6);
+}
+
+/* Posts List */
+.unique-posts-list {
+  width: 100%;
+  max-width: 960px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+/* Individual Post Card */
+.unique-post-card {
+  background: linear-gradient(145deg, #89f7fe 0%, #66a6ff 100%);
+  border-radius: 20px;
+  padding: 25px 22px;
+  box-shadow: 0 8px 18px rgba(102, 166, 255, 0.3);
+  color: #1e272e;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.unique-post-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(255, 105, 180, 0.45);
+}
+
+/* Post Title */
+.unique-post-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #6f1d9f;
+  text-shadow: 1px 1px 2px #b3a1c9;
+}
+
+/* Post Author and Category */
+.unique-post-author,
+.unique-post-category {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: #341f97;
+  font-weight: 600;
+}
+
+/* Actions container */
+.unique-post-actions {
+  margin-top: 18px;
+  display: flex;
+  gap: 16px;
+}
+
+/* View Button */
+.unique-view-btn {
+  flex-grow: 1;
+  text-align: center;
+  background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+  color: #3e1f47;
+  padding: 11px 18px;
+  border-radius: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 5px 14px rgba(253, 160, 133, 0.6);
+  transition: box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.unique-view-btn:hover {
+  box-shadow: 0 8px 24px rgba(246, 211, 101, 0.9);
+  background: linear-gradient(135deg, #fda085 0%, #f6d365 100%);
+}
+
+/* Delete Button */
+.unique-delete-btn {
+  flex-grow: 1;
+  background: linear-gradient(135deg, #ff5858 0%, #f09819 100%);
+  border: none;
+  padding: 11px 18px;
+  border-radius: 14px;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 5px 14px rgba(240, 152, 25, 0.7);
+  transition: box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.unique-delete-btn:hover {
+  box-shadow: 0 8px 24px rgba(255, 88, 88, 0.9);
+  background: linear-gradient(135deg, #f09819 0%, #ff5858 100%);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .unique-manage-posts-title {
+    font-size: 2rem;
+    margin-bottom: 24px;
+  }
+
+  .unique-posts-list {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .unique-post-card {
+    padding: 20px 18px;
+  }
+
+  .unique-post-title {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .unique-post-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .unique-view-btn,
+  .unique-delete-btn {
+    flex-grow: unset;
+    width: 100%;
+  }
+}

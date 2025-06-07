@@ -1,0 +1,64 @@
+/* /Assets/Styles/EditPost.css */
+
+.editpost-container {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 40px;
+  background-color: #fdfdfd;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.editpost-heading {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #2c3e50;
+}
+
+.editpost-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.editpost-input,
+.editpost-select,
+.editpost-textarea {
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.editpost-input:focus,
+.editpost-select:focus,
+.editpost-textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.editpost-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.editpost-button:hover {
+  background-color: #0056b3;
+}
+
+.editpost-updated-time {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #555;
+  font-style: italic;
+}

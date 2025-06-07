@@ -1,0 +1,159 @@
+/* Container that offsets the sidebar width */
+.admin-home-main-content {
+  margin-left: 220px; /* width of sidebar */
+  padding: 20px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fceabb, #f8b500);
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Responsive: On small screens, remove left margin and add padding */
+@media (max-width: 768px) {
+  .admin-home-main-content {
+    margin-left: 0;
+    padding: 15px;
+  }
+}
+
+/* Main Page Container inside the margin wrapper */
+.View-User-main-page {
+  padding: 40px 0; /* top & bottom padding only */
+}
+
+/* Table Container */
+.UserDetailsTable {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  overflow-x: auto;
+  border: 3px solid #ffdd95;
+}
+
+/* Table */
+.UserDetailsTable table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Table Header */
+.BorderSetting-viewUsersPage {
+  background: linear-gradient(90deg, #ff6a00, #ee0979);
+  color: #ffffff;
+}
+
+.thBorderSetting-viewUsersPage {
+  text-align: left;
+  padding: 14px 20px;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  font-weight: bold;
+}
+
+/* Table Rows */
+.UserDetailsTable td {
+  padding: 14px 20px;
+  font-size: 15px;
+  color: #2e2e2e;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.UserDetailsTable tbody tr:nth-child(even) {
+  background-color: #fff8e1;
+}
+
+.UserDetailsTable tbody tr:hover {
+  background-color: #ffe0b2;
+  transition: all 0.3s ease;
+}
+
+/* View Profile Button */
+.ViewProfileButton {
+  background: linear-gradient(135deg, #00c9ff, #92fe9d);
+  color: #000000;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ViewProfileButton:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Modal Content */
+.modal-content {
+  border-radius: 16px;
+  border: none;
+  background: linear-gradient(to bottom right, #ffffff, #e0f7fa);
+}
+
+/* Modal Header/Footer */
+.modal-header,
+.modal-footer {
+  background-color: #fff3e0;
+  border: none;
+}
+
+.modal-title {
+  font-weight: 700;
+  font-size: 20px;
+  color: #4e342e;
+}
+
+/* Profile Container */
+.profile-container {
+  padding: 30px 10px;
+}
+
+.profile-card {
+  background: #ffffff;
+  border-left: 6px solid #ff7043;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+}
+
+/* Profile Image */
+.profile-picture {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #ffcc80;
+  margin-bottom: 15px;
+}
+
+/* Profile Info */
+.profile-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ff5722;
+}
+
+.profile-info p {
+  font-size: 15px;
+  color: #424242;
+  margin-bottom: 8px;
+}
+
+/* Responsive for Modal image and text alignment */
+@media (max-width: 576px) {
+  .profile-card {
+    flex-direction: column !important;
+  }
+
+  .profile-picture {
+    max-width: 120px;
+    margin: 0 auto 20px auto;
+  }
+
+  .profile-info {
+    text-align: center;
+  }
+}

@@ -1,0 +1,120 @@
+/* NewPost Minimalistic Blog Style */
+
+.npd-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e0f7fa 0%, #fff 100%);
+  padding: 70px 15px 40px;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.npd-card {
+  background: #fff;
+  max-width: 700px;
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  display: flex;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.npd-card:hover {
+  box-shadow: 0 12px 35px rgba(0,0,0,0.18);
+}
+
+.npd-sidebar-accent {
+  width: 8px;
+  background: #00acc1;
+  border-radius: 15px 0 0 15px;
+}
+
+.npd-content {
+  padding: 40px 40px 40px 30px;
+  flex: 1;
+}
+
+.npd-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #007c91;
+}
+
+.npd-group {
+  margin-bottom: 25px;
+}
+
+.npd-label {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #333;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.npd-input,
+.npd-select,
+.npd-textarea {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: 1.5px solid #cfd8dc;
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: #444;
+  background-color: #fafafa;
+  transition: border-color 0.3s ease;
+  font-family: inherit;
+}
+
+.npd-input:focus,
+.npd-select:focus,
+.npd-textarea:focus {
+  border-color: #00acc1;
+  outline: none;
+  background-color: #fff;
+}
+
+.npd-textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.npd-submit-btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  background-color: #00acc1;
+  color: white;
+  font-weight: 700;
+  font-size: 1.15rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.npd-submit-btn:hover {
+  background-color: #00838f;
+}
+
+@media (max-width: 768px) {
+  .npd-card {
+    flex-direction: column;
+  }
+  .npd-sidebar-accent {
+    width: 100%;
+    height: 8px;
+    border-radius: 15px 15px 0 0;
+  }
+  .npd-content {
+    padding: 25px 20px 30px;
+  }
+  .npd-title {
+    font-size: 2rem;
+  }
+}

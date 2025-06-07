@@ -1,0 +1,128 @@
+/* UserRegistration.css */
+
+.registration-form-background {
+  background: linear-gradient(to right, #2193b0, #6dd5ed);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.registration-form-main {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 40px 30px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  animation: fadeSlideIn 0.8s ease;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.registration-form-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1d3557;
+  margin-bottom: 30px;
+  text-align: center;
+  position: relative;
+}
+
+.registration-form-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #457b9d;
+  margin: 10px auto 0 auto;
+  border-radius: 2px;
+}
+
+.registration-form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.registration-label {
+  font-weight: 600;
+  color: #1d3557;
+  margin-bottom: 8px;
+}
+
+.registration-input {
+  padding: 12px 15px;
+  border: 2px solid #a8dadc;
+  border-radius: 10px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.registration-input:focus {
+  border-color: #1d3557;
+  box-shadow: 0 0 5px rgba(29, 53, 87, 0.3);
+}
+
+.registration-button {
+  width: 100%;
+  background: linear-gradient(to right, #457b9d, #1d3557);
+  color: #fff;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.4s, transform 0.2s;
+  margin-top: 15px;
+}
+
+.registration-button:hover {
+  background: linear-gradient(to right, #1d3557, #457b9d);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(69, 123, 157, 0.3);
+}
+
+.registration-link {
+  margin-top: 20px;
+  font-size: 0.95rem;
+  color: #1d3557;
+}
+
+.registration-link a {
+  color: #1d3557;
+  font-weight: 600;
+  text-decoration: underline;
+  transition: color 0.3s;
+}
+
+.registration-link a:hover {
+  color: #023047;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .registration-form-main {
+    padding: 30px 20px;
+  }
+
+  .registration-form-title {
+    font-size: 1.6rem;
+  }
+
+  .registration-button {
+    font-size: 1rem;
+  }
+}
