@@ -4,27 +4,21 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 function AdminNavbar() {
-  
   const navigate = useNavigate();
   const [showHamburger, setShowHamburger] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  const handleScroll = () => {
-    const currentScrollY = window.scrollY;
-    if (currentScrollY > lastScrollY) {
-      setShowHamburger(false); // scrolling down
-    } else {
-      setShowHamburger(true); // scrolling up
-    }
-    setLastScrollY(currentScrollY);
-  };
-
   useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      setShowHamburger(currentScrollY < lastScrollY);
+      setLastScrollY(currentScrollY);
+    };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
-  const AdminLogout = () => {
+  const handleLogout = () => {
     Swal.fire({
       title: "Are you sure?",
       text: "You will be logged out!",
@@ -44,26 +38,22 @@ function AdminNavbar() {
 
   return (
     <>
-      <input type="checkbox" id="admin-sidebar-toggle" className="admin-sidebar-toggle" />
+      <input type="checkbox" id="nav-admin-toggle" className="nav-admin-toggle" />
 
-      <div className="sidebar-admin-navbar">
-        <label htmlFor="admin-sidebar-toggle" className="admin-close-btn">
-          &times;
-        </label>
-        <div className="sidebar-admin-logo">
-          <h3>Admin Panel</h3>
-        </div>
-        <nav className="sidebar-admin-links">
-          <a href="/dashboard" className="sidebar-admin-link">Dashboard</a>
-          <a href="/ManageUsers" className="sidebar-admin-link">Manage Users</a>
-          <a href="/ManagePosts" className="sidebar-admin-link">Manage Posts</a>
-          <button className="sidebar-admin-link logout-button" onClick={AdminLogout}>Logout</button>
+      <aside className="nav-admin-sidebar">
+        <label htmlFor="nav-admin-toggle" className="nav-admin-close">&times;</label>
+        <div className="nav-admin-logo">Admin Panel</div>
+        <nav className="nav-admin-links">
+          <a href="/dashboard" className="nav-admin-link">Dashboard</a>
+          <a href="/ManageUsers" className="nav-admin-link">Manage Users</a>
+          <a href="/ManagePosts" className="nav-admin-link">Manage Posts</a>
+          <button onClick={handleLogout} className="nav-admin-link nav-admin-logout">Logout</button>
         </nav>
-      </div>
+      </aside>
 
       <label
-        htmlFor="admin-sidebar-toggle"
-        className={`admin-hamburger-icon ${showHamburger ? "show" : "hide"}`}
+        htmlFor="nav-admin-toggle"
+        className={`nav-admin-hamburger ${showHamburger ? "visible" : "hidden"}`}
       >
         &#9776;
       </label>

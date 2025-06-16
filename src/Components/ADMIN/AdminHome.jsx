@@ -8,7 +8,6 @@ import Swal from "sweetalert2";
 function AdminHome() {
   const isAdmin = sessionStorage.getItem("isAdminLoggedIn");
   const navigate = useNavigate();
-
   const API_BASE_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
@@ -31,163 +30,120 @@ function AdminHome() {
   const [showPendingListModal, setShowPendingListModal] = useState(false);
   const [currentPost, setCurrentPost] = useState(null);
 
-  const fetchDashboardData = () => {
-    axios
-      .post(`${API_BASE_URL}/ViewUserData`)
-      .then((res) => setTotalUsers(res.data.data.length))
-      .catch((err) => console.error("Error loading users:", err));
-
-    axios
-      .get(`${API_BASE_URL}/AllPosts`)
-      .then((res) => setPosts(res.data.data.length))
-      .catch((err) => console.error("Error loading posts", err));
-
-    axios
-      .get(`${API_BASE_URL}/admin/pending-posts`)
-      .then((res) => {
-        setNumOfPendingPost(res.data.data.length);
-        if (Array.isArray(res.data.data)) {
-          setPendingPosts(res.data.data);
-        }
-      })
-      .catch((err) => console.error("Error fetching pending posts:", err));
-  };
-
   useEffect(() => {
-    fetchDashboardData();
+    axios.post(`${API_BASE_URL}/ViewUserData`).then((res) => {
+      setTotalUsers(res.data.data.length);
+    });
+
+    axios.get(`${API_BASE_URL}/AllPosts`).then((res) => {
+      setPosts(res.data.data.length);
+    });
+
+    axios.get(`${API_BASE_URL}/admin/pending-posts`).then((res) => {
+      setNumOfPendingPost(res.data.data.length);
+      if (Array.isArray(res.data.data)) {
+        setPendingPosts(res.data.data);
+      }
+    });
   }, []);
 
   const handleApprove = (postId) => {
-    axios
-      .put(`${API_BASE_URL}/admin/approve-posts/${postId}`)
-      .then(() => {
-        const updated = pendingPosts.filter((post) => post._id !== postId);
-        setPendingPosts(updated);
-        setNumOfPendingPost((prev) => prev - 1);
-        setPosts((prev) => prev + 1);
-        setCurrentPost(null);
-
-        Swal.fire({
-          title: "Approved!",
-          text: "Post has been approved successfully.",
-          icon: "success",
-          timer: 1000,
-          timerProgressBar: true,
-          showConfirmButton: false,
-        });
-      })
-      .catch((err) => console.error("Error approving post:", err));
+    axios.put(`${API_BASE_URL}/admin/approve-posts/${postId}`).then(() => {
+      setPendingPosts(pendingPosts.filter((p) => p._id !== postId));
+      setNumOfPendingPost((prev) => prev - 1);
+      setPosts((prev) => prev + 1);
+      setCurrentPost(null);
+      Swal.fire("Approved", "Post approved successfully!", "success");
+    });
   };
 
   const handleDelete = (postId) => {
     Swal.fire({
-      title: "Are you sure?",
-      text: "This post will be permanently deleted!",
+      title: "Confirm Delete",
+      text: "Post will be permanently deleted.",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axios
-          .delete(`${API_BASE_URL}/DeletePost/${postId}`)
-          .then(() => {
-            const updated = pendingPosts.filter((post) => post._id !== postId);
-            setPendingPosts(updated);
-            setNumOfPendingPost((prev) => prev - 1);
-            setCurrentPost(null);
-
-            Swal.fire({
-              title: "Deleted!",
-              text: "Post has been deleted.",
-              icon: "success",
-              timer: 1000,
-              timerProgressBar: true,
-              showConfirmButton: false,
-            });
-          })
-          .catch((err) => {
-            console.error("Error deleting post:", err);
-            Swal.fire("Error", "Failed to delete the post.", "error");
-          });
+      confirmButtonText: "Yes, Delete",
+    }).then((res) => {
+      if (res.isConfirmed) {
+        axios.delete(`${API_BASE_URL}/DeletePost/${postId}`).then(() => {
+          setPendingPosts(pendingPosts.filter((p) => p._id !== postId));
+          setNumOfPendingPost((prev) => prev - 1);
+          setCurrentPost(null);
+          Swal.fire("Deleted", "Post has been deleted.", "success");
+        });
       }
     });
   };
 
   return (
-    <div className="admin-home-layout">
+    <div className="clean-admin-layout">
       <AdminNavbar />
-      <div className="admin-home-main-content">
-        <h2 className="admin-home-title">Admin Dashboard</h2>
-        <div className="admin-home-cards">
-          <div className="admin-home-card">
-            <h3>Total Users</h3>
-            <p>{totalUsers}</p>
+      <div className="clean-admin-main">
+        <h2 className="clean-admin-heading">Admin Dashboard</h2>
+        <div className="clean-admin-grid">
+          <div className="clean-admin-box">
+            <span className="clean-admin-label">Total Users</span>
+            <span className="clean-admin-value">{totalUsers}</span>
           </div>
-          <div className="admin-home-card">
-            <h3>Total Posts</h3>
-            <p>{posts}</p>
+          <div className="clean-admin-box">
+            <span className="clean-admin-label">Total Posts</span>
+            <span className="clean-admin-value">{posts}</span>
           </div>
-          <div className="admin-home-card">
-            <h3>Pending Posts</h3>
-            <p>{numOfPendingPost}</p>
-            <button onClick={() => setShowPendingListModal(true)}>View</button>
+          <div className="clean-admin-box">
+            <span className="clean-admin-label">Pending Posts</span>
+            <span className="clean-admin-value">{numOfPendingPost}</span>
+            <button
+              className="clean-admin-btn-view"
+              onClick={() => setShowPendingListModal(true)}
+            >
+              View
+            </button>
           </div>
         </div>
 
-        {/* Modal: List of Pending Posts */}
         {showPendingListModal && (
-          <div className="admin-modal">
-            <div className="admin-modal-content">
-              <h4>Pending Posts</h4>
-              <ul>
-                {pendingPosts.length > 0 ? (
-                  pendingPosts.map((post) => (
+          <div className="clean-modal-overlay">
+            <div className="clean-modal-box">
+              <h3>Pending Posts</h3>
+              {pendingPosts.length > 0 ? (
+                <ul className="clean-pending-list">
+                  {pendingPosts.map((post) => (
                     <li key={post._id}>
-                      {post.title}{" "}
+                      <span>{post.title}</span>
                       <button
-                        onClick={() => {
-                          console.log("Selected post:", post); // 👈 Add this line
-                          setCurrentPost(post);
-                        }}
+                        className="clean-admin-btn-view"
+                        onClick={() => setCurrentPost(post)}
                       >
                         View
                       </button>
                     </li>
-                  ))
-                ) : (
-                  <p>No pending posts.</p>
-                )}
-              </ul>
-              <button onClick={() => setShowPendingListModal(false)}>Close</button>
+                  ))}
+                </ul>
+              ) : (
+                <p>No pending posts</p>
+              )}
+              <button
+                className="clean-admin-btn-close"
+                onClick={() => setShowPendingListModal(false)}
+              >
+                Close
+              </button>
             </div>
           </div>
         )}
 
-        {/* Modal: View Single Post */}
         {currentPost && (
-          <div className="admin-modal">
-            <div className="admin-modal-content">
-              <h4>Post Details</h4>
-              <p>
-                <strong>Title:</strong> {currentPost.title}
-              </p>
-              <p>
-                <strong>Author:</strong> {currentPost.userDetails?.username}
-              </p>
-              <p>
-                <strong>Category:</strong> {currentPost.category}
-              </p>
-              <p>
-                <strong>Content:</strong> {currentPost.content}
-              </p>
-              <div className="admin-modal-buttons">
+          <div className="clean-modal-overlay">
+            <div className="clean-modal-box">
+              <h3>{currentPost.title}</h3>
+              <p><strong>Author:</strong> {currentPost.userDetails?.username}</p>
+              <p><strong>Category:</strong> {currentPost.category}</p>
+              <p><strong>Content:</strong> {currentPost.content}</p>
+              <div className="clean-action-btns">
                 <button onClick={() => handleApprove(currentPost._id)}>Approve</button>
-                <button onClick={() => handleDelete(currentPost._id)} className="delete-btn">
-                  Delete
-                </button>
-                <button onClick={() => setCurrentPost(null)} className="close-btn">Close</button>
+                <button onClick={() => handleDelete(currentPost._id)} className="delete">Delete</button>
+                <button onClick={() => setCurrentPost(null)}>Close</button>
               </div>
             </div>
           </div>
