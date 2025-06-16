@@ -1,231 +1,226 @@
-/* Main layout */
-.admin-home-layout {
+/* Base Layout */
+.clean-admin-layout {
   display: flex;
+  background-color: #f2f4f8;
   min-height: 100vh;
-  background-color: #f8f9fa;
-  /* Fade in whole page */
-  animation: fadeInPage 0.8s ease forwards;
 }
 
-@keyframes fadeInPage {
-  from {opacity: 0;}
-  to {opacity: 1;}
-}
-
-/* Content beside sidebar */
-.admin-home-main-content {
-  flex: 1;
-  padding: 30px;
+/* Main content with left margin */
+.clean-admin-main {
+  margin-left: 220px;
+  flex-grow: 1;
+  padding: 40px 30px;
   background-color: #ffffff;
-  overflow-y: auto;
-  /* Smooth fade and slight slide */
-  animation: slideFadeIn 0.7s ease forwards;
+  animation: fadeSlideIn 0.5s ease;
 }
 
-@keyframes slideFadeIn {
-  from {opacity: 0; transform: translateY(15px);}
-  to {opacity: 1; transform: translateY(0);}
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* Page title */
-.admin-home-title {
-  font-size: 28px;
-  font-weight: bold;
+.clean-admin-heading {
+  font-size: 32px;
+  font-weight: 700;
+  color: #2c3e50;
   margin-bottom: 30px;
-  color: #343a40;
-  /* Text shadow subtle glow on hover */
-  transition: text-shadow 0.3s ease;
-}
-.admin-home-title:hover {
-  text-shadow: 0 0 8px #007bff88;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
 }
 
-/* Dashboard card layout */
-.admin-home-cards {
+/* Card Grid */
+.clean-admin-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 25px;
 }
 
-/* Individual dashboard card */
-.admin-home-card {
-  background-color: #ffffff;
-  border: 1px solid #dee2e6;
-  border-radius: 12px;
+.clean-admin-box {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #e1f5fe, #fce4ec);
   padding: 25px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   text-align: center;
+  position: relative;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-  /* Subtle pop in animation */
-  animation: popIn 0.4s ease forwards;
 }
 
-@keyframes popIn {
-  from {opacity: 0; transform: scale(0.95);}
-  to {opacity: 1; transform: scale(1);}
+.clean-admin-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
 }
 
-.admin-home-card:hover {
-  transform: translateY(-5px) scale(1.03);
-  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3);
+.clean-admin-label {
+  display: block;
+  font-size: 18px;
+  color: #37474f;
+  margin-bottom: 8px;
+  font-weight: 600;
 }
 
-.admin-home-card h3 {
-  font-size: 20px;
-  margin-bottom: 10px;
-  color: #007bff;
-}
-
-.admin-home-card p {
-  font-size: 24px;
+.clean-admin-value {
+  font-size: 28px;
   font-weight: bold;
-  color: #212529;
-  /* Animate number counting (optional if you want a cool effect) */
-  animation: fadeInNumbers 1s ease forwards;
+  color: #00796b;
 }
 
-@keyframes fadeInNumbers {
-  from {opacity: 0;}
-  to {opacity: 1;}
-}
-
-.admin-home-card button {
-  margin-top: 10px;
+/* View Button on Card */
+.clean-admin-btn-view {
+  margin-top: 12px;
   padding: 8px 16px;
   font-size: 14px;
-  background-color: #17a2b8;
+  background-color: #42a5f5;
+  color: #fff;
   border: none;
   border-radius: 8px;
-  color: #fff;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 4px 8px rgba(23, 162, 184, 0.3);
+  box-shadow: 0 4px 10px rgba(66, 165, 245, 0.3);
+  transition: background-color 0.3s ease;
 }
 
-.admin-home-card button:hover {
-  background-color: #138496;
-  transform: scale(1.05);
-  box-shadow: 0 6px 12px rgba(19, 132, 150, 0.6);
+.clean-admin-btn-view:hover {
+  background-color: #1e88e5;
 }
 
-/* Modal background */
-.admin-modal {
+/* Modal Overlay */
+.clean-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 1050;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(30, 30, 30, 0.6);
   display: flex;
-  align-items: center;
   justify-content: center;
-  z-index: 999;
-  /* Fade in modal */
-  animation: fadeInModal 0.4s ease forwards;
+  align-items: center;
+  padding: 30px;
+  animation: modalFadeIn 0.3s ease;
 }
 
-@keyframes fadeInModal {
-  from {opacity: 0;}
-  to {opacity: 1;}
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-/* Modal content box */
-.admin-modal-content {
+/* Modal Box */
+.clean-modal-box {
   background-color: #ffffff;
   padding: 30px;
   border-radius: 12px;
   width: 90%;
   max-width: 600px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
   max-height: 80vh;
   overflow-y: auto;
-  /* Slide up modal */
-  animation: slideUpModal 0.4s ease forwards;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+  animation: modalSlideUp 0.4s ease;
 }
 
-@keyframes slideUpModal {
-  from {opacity: 0; transform: translateY(30px);}
-  to {opacity: 1; transform: translateY(0);}
+@keyframes modalSlideUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
-.admin-modal-content h4 {
+.clean-modal-box h3 {
   margin-bottom: 20px;
-  color: #343a40;
-  /* Subtle fade in */
-  animation: fadeInText 0.5s ease forwards;
+  font-size: 22px;
+  color: #3f51b5;
 }
 
-@keyframes fadeInText {
-  from {opacity: 0;}
-  to {opacity: 1;}
+.clean-modal-box p {
+  margin: 10px 0;
+  color: #444;
+  line-height: 1.6;
 }
 
-/* List of pending posts */
-.admin-modal-content ul {
+/* Pending Posts List */
+.clean-pending-list {
+  
   list-style: none;
-  padding-left: 0;
+  padding: 0;
+  margin-bottom: 20px;
 }
 
-.admin-modal-content li {
+.clean-pending-list li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
-  padding: 10px;
-  border-bottom: 1px solid #dee2e6;
-  font-size: 16px;
-  /* Smooth hover highlight */
-  transition: background-color 0.2s ease;
+  background-color: #f1f8ff;
+  border: 1px solid #dbeafe;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
+
+/* Close Button */
+.clean-admin-btn-close {
+  margin-top: 10px;
+  padding: 8px 14px;
+  background-color: #6c757d;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
   cursor: pointer;
 }
 
-.admin-modal-content li:hover {
-  background-color: #e9f5fb;
+.clean-admin-btn-close:hover {
+  background-color: #5a6268;
 }
 
-/* Modal buttons */
-.admin-modal-buttons {
+/* Action Buttons */
+.clean-action-btns {
   display: flex;
   justify-content: flex-end;
-  gap: 12px;
+  gap: 10px;
   margin-top: 20px;
 }
 
-.admin-modal-content button {
-  padding: 8px 14px;
-  border: none;
-  border-radius: 8px;
+.clean-action-btns button {
+  padding: 8px 16px;
   font-size: 14px;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.admin-modal-content button:first-of-type {
-  background-color: #28a745;
   color: white;
-  box-shadow: 0 4px 8px rgba(40, 167, 69, 0.4);
+  background-color: #4caf50;
+  transition: background-color 0.3s ease;
 }
 
-.admin-modal-content button:first-of-type:hover {
-  background-color: #218838;
-  transform: scale(1.05);
-  box-shadow: 0 6px 12px rgba(33, 136, 56, 0.6);
+.clean-action-btns button:hover {
+  background-color: #388e3c;
 }
 
-.admin-modal-content button:last-of-type {
-  background-color: #dc3545;
-  color: white;
-  box-shadow: 0 4px 8px rgba(220, 53, 69, 0.4);
+.clean-action-btns .delete {
+  background-color: #e53935;
 }
 
-.admin-modal-content button:last-of-type:hover {
-  background-color: #c82333;
-  transform: scale(1.05);
-  box-shadow: 0 6px 12px rgba(200, 35, 51, 0.6);
+.clean-action-btns .delete:hover {
+  background-color: #c62828;
 }
 
-.admin-modal-content ul {
-  max-height: 300px;
-  overflow-y: auto;
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .clean-admin-main {
+    margin-left: 0;
+    padding: 20px;
+  }
+
+  .clean-admin-heading {
+    font-size: 26px;
+  }
+
+  .clean-modal-box {
+    padding: 20px;
+  }
+
+  .clean-action-btns {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .clean-action-btns button {
+    width: 100%;
+  }
 }

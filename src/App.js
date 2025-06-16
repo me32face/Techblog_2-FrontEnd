@@ -25,10 +25,33 @@ import CommentSection from './Components/Common-Pages/CommentSection';
 import LikeDislikeButton from './Components/Common-Pages/LikeDislikeButton';
 import SavedPosts from './Components/USER/SavedPosts';
 import AuthorProfile from './Components/Common-Pages/AuthorProfile';
+import LoadingScreen from './Components/STATIC/LoadingScreen';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 
 
 function App() {
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    axios.get(process.env.REACT_APP_API_URL + '/ping')
+      .then(() => setIsLoading(false))
+      .catch(() => {
+        // retry every 2 seconds until the server responds
+        const interval = setInterval(() => {
+          axios.get(process.env.REACT_APP_API_URL + '/ping')
+            .then(() => {
+              clearInterval(interval);
+              setIsLoading(false);
+            });
+        }, 2000);
+      });
+  }, []);
+
+  if (isLoading) return <LoadingScreen />;
+
   return (
     <BrowserRouter>
       <div>

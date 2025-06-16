@@ -1,150 +1,116 @@
-/* Sidebar base */
-.sidebar-admin-navbar {
+:root {
+  --nav-bg: #ffffff;
+  --nav-text: #1e1e1e;
+  --nav-highlight: #007bff;
+  --nav-hover: #f0f0f0;
+  --nav-shadow: rgba(0, 0, 0, 0.08);
+}
+
+.nav-admin-sidebar {
   width: 220px;
   height: 100vh;
-  background-color: #1f1f2e;
-  color: white;
+  background-color: var(--nav-bg);
+  color: var(--nav-text);
   position: fixed;
   top: 0;
   left: 0;
-  padding-top: 20px;
-  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 2px 0 10px var(--nav-shadow);
+  padding: 2rem 1rem;
   display: flex;
   flex-direction: column;
+  gap: 2rem;
   z-index: 1000;
+  transform: translateX(0);
   transition: transform 0.3s ease;
 }
 
-/* Sidebar content */
-.sidebar-admin-logo {
+.nav-admin-logo {
+  font-size: 1.5rem;
+  font-weight: 600;
   text-align: center;
-  margin-bottom: 30px;
-  font-size: 1.6rem;
-  font-weight: bold;
 }
 
-.sidebar-admin-links {
+.nav-admin-links {
   display: flex;
   flex-direction: column;
-  padding-left: 0;
-  margin: 0;
+  gap: 1rem;
 }
 
-.sidebar-admin-link {
-  padding: 15px 20px;
-  text-decoration: none;
-  color: white;
-  transition: background 0.3s ease;
-  text-align: left;
-  border: none;
-  background: none;
+.nav-admin-link {
   font-size: 1rem;
-}
-
-.sidebar-admin-link:hover {
-  background-color: #292944;
-  cursor: pointer;
-}
-
-.logout-button {
-  width: 100%;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: var(--nav-text);
+  background: none;
+  border: none;
   text-align: left;
+  cursor: pointer;
+  transition: background 0.3s;
 }
 
-/* Hamburger icon for small screens */
-.admin-hamburger-icon {
+.nav-admin-link:hover {
+  background-color: var(--nav-hover);
+  border-radius: 6px;
+}
+
+.nav-admin-logout {
+  color: #d9534f;
+}
+
+.nav-admin-hamburger {
   display: none;
-  font-size: 2rem;
   position: fixed;
-  top: 15px;
-  left: 15px;
-  color: white;
-  background-color: #1f1f2e;
-  padding: 8px 12px;
-  border-radius: 4px;
+  top: 1rem;
+  left: 1rem;
+  font-size: 1.8rem;
+  padding: 0.5rem 0.75rem;
+  background-color: var(--nav-bg);
+  color: var(--nav-text);
+  border-radius: 6px;
+  box-shadow: 0 2px 6px var(--nav-shadow);
   z-index: 1100;
   cursor: pointer;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Close button inside sidebar (small devices) */
-.admin-close-btn {
-  display: none;
-  font-size: 2rem;
-  text-align: right;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
-/* Hide checkbox */
-.admin-sidebar-toggle {
-  display: none;
-}
-
-/* RESPONSIVE - Collapse for mobile */
-@media (max-width: 768px) {
-  .sidebar-admin-navbar {
-    transform: translateX(-100%);
-    position: fixed;
-  }
-
-  .admin-sidebar-toggle:checked ~ .sidebar-admin-navbar {
-    transform: translateX(0);
-  }
-
-  .admin-hamburger-icon {
-    display: block;
-  }
-
-  .admin-close-btn {
-    display: block;
-  }
-}
-
-/* Padding for main content */
-.admin-home-main-content {
-  margin-left: 220px;
-  padding: 20px;
-}
-
-@media (max-width: 768px) {
-  .admin-home-main-content {
-    margin-left: 0;
-    padding: 20px;
-  }
-}
-
-/* Hamburger Icon Base */
-.admin-hamburger-icon {
-  display: none;
-  font-size: 2rem;
-  position: fixed;
-  top: 15px;
-  left: 15px;
-  color: white;
-  background-color: #1f1f2e;
-  padding: 8px 12px;
-  border-radius: 4px;
-  z-index: 1100;
-  cursor: pointer;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-/* Show/Hide Animation */
-.admin-hamburger-icon.show {
+.nav-admin-hamburger.visible {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
 }
 
-.admin-hamburger-icon.hide {
+.nav-admin-hamburger.hidden {
   opacity: 0;
   transform: translateY(-100%);
   pointer-events: none;
 }
 
-/* Show on small screens only */
+.nav-admin-close {
+  display: none;
+  font-size: 2rem;
+  text-align: right;
+  cursor: pointer;
+  margin-bottom: 2rem;
+}
+
+.nav-admin-toggle {
+  display: none;
+}
+
 @media (max-width: 768px) {
-  .admin-hamburger-icon {
+  .nav-admin-sidebar {
+    transform: translateX(-100%);
+  }
+
+  .nav-admin-toggle:checked ~ .nav-admin-sidebar {
+    transform: translateX(0);
+  }
+
+  .nav-admin-hamburger {
+    display: block;
+  }
+
+  .nav-admin-close {
     display: block;
   }
 }

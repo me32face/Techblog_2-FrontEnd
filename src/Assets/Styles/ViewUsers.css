@@ -1,159 +1,149 @@
-/* Container that offsets the sidebar width */
-.admin-home-main-content {
-  margin-left: 220px; /* width of sidebar */
-  padding: 20px;
+.vu-page-wrapper {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f4f6f8;
   min-height: 100vh;
-  background: linear-gradient(135deg, #fceabb, #f8b500);
-  font-family: "Segoe UI", sans-serif;
+  padding-top: 60px;
 }
 
-/* Responsive: On small screens, remove left margin and add padding */
+.vu-main-content {
+  padding: 30px;
+  margin-left: 220px;
+}
+
 @media (max-width: 768px) {
-  .admin-home-main-content {
+  .vu-main-content {
     margin-left: 0;
-    padding: 15px;
+    padding: 20px;
   }
 }
 
-/* Main Page Container inside the margin wrapper */
-.View-User-main-page {
-  padding: 40px 0; /* top & bottom padding only */
+.vu-heading {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #333;
 }
 
-/* Table Container */
-.UserDetailsTable {
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 30px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+.vu-table-wrapper {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
   overflow-x: auto;
-  border: 3px solid #ffdd95;
 }
 
-/* Table */
-.UserDetailsTable table {
+.vu-user-table {
   width: 100%;
   border-collapse: collapse;
 }
 
-/* Table Header */
-.BorderSetting-viewUsersPage {
-  background: linear-gradient(90deg, #ff6a00, #ee0979);
-  color: #ffffff;
+.vu-user-table th,
+.vu-user-table td {
+  padding: 14px 16px;
+  font-size: 15px;
+  border-bottom: 1px solid #eee;
 }
 
-.thBorderSetting-viewUsersPage {
-  text-align: left;
-  padding: 14px 20px;
-  font-size: 16px;
-  letter-spacing: 0.5px;
+.vu-user-table th {
+  background-color: #fafafa;
   font-weight: bold;
+  color: #444;
 }
 
-/* Table Rows */
-.UserDetailsTable td {
-  padding: 14px 20px;
-  font-size: 15px;
-  color: #2e2e2e;
-  border-bottom: 1px solid #f2f2f2;
+.vu-user-table tr:hover {
+  background-color: #f1f1f1;
 }
 
-.UserDetailsTable tbody tr:nth-child(even) {
-  background-color: #fff8e1;
-}
-
-.UserDetailsTable tbody tr:hover {
-  background-color: #ffe0b2;
-  transition: all 0.3s ease;
-}
-
-/* View Profile Button */
-.ViewProfileButton {
-  background: linear-gradient(135deg, #00c9ff, #92fe9d);
-  color: #000000;
+.vu-view-btn,
+.vu-delete-btn {
+  padding: 6px 14px;
+  margin-right: 6px;
   border: none;
-  border-radius: 10px;
-  padding: 8px 16px;
+  border-radius: 6px;
   font-size: 14px;
-  font-weight: 600;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
-.ViewProfileButton:hover {
-  transform: scale(1.08);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+.vu-view-btn {
+  background-color: #4caf50;
+  color: white;
 }
 
-/* Modal Content */
-.modal-content {
-  border-radius: 16px;
-  border: none;
-  background: linear-gradient(to bottom right, #ffffff, #e0f7fa);
+.vu-delete-btn {
+  background-color: #f44336;
+  color: white;
 }
 
-/* Modal Header/Footer */
-.modal-header,
-.modal-footer {
-  background-color: #fff3e0;
-  border: none;
-}
-
-.modal-title {
-  font-weight: 700;
-  font-size: 20px;
-  color: #4e342e;
-}
-
-/* Profile Container */
-.profile-container {
-  padding: 30px 10px;
-}
-
-.profile-card {
-  background: #ffffff;
-  border-left: 6px solid #ff7043;
-  border-radius: 16px;
-  padding: 25px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
-}
-
-/* Profile Image */
-.profile-picture {
+.vu-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  max-width: 180px;
-  height: auto;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 4px solid #ffcc80;
-  margin-bottom: 15px;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
 }
 
-/* Profile Info */
-.profile-name {
+.vu-modal {
+  background-color: white;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.15);
+  padding: 20px;
+  animation: slideIn 0.3s ease-in-out;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.vu-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.vu-modal-header h4 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.vu-close-btn {
+  background: none;
+  border: none;
   font-size: 22px;
-  font-weight: 700;
-  color: #ff5722;
+  cursor: pointer;
 }
 
-.profile-info p {
+.vu-profile-img {
+  width: 100%;
+  max-width: 120px;
+  height: auto;
+  border-radius: 5%;
+  margin: 20px auto;
+  display: block;
+  border: 3px solid #ccc;
+}
+
+.vu-profile-info {
+  padding: 10px 0;
   font-size: 15px;
-  color: #424242;
-  margin-bottom: 8px;
+  color: #444;
 }
 
-/* Responsive for Modal image and text alignment */
-@media (max-width: 576px) {
-  .profile-card {
-    flex-direction: column !important;
-  }
+.vu-modal-footer {
+  text-align: right;
+  margin-top: 20px;
+}
 
-  .profile-picture {
-    max-width: 120px;
-    margin: 0 auto 20px auto;
-  }
-
-  .profile-info {
-    text-align: center;
-  }
+.vu-close-btn-outline {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
 }

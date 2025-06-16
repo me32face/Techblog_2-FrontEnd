@@ -99,12 +99,12 @@ function ForgotPassword() {
                 </div>
 
                 <div className="forgot-form-group">
-                    <label className="forgot-form-label" htmlFor="password">Password:</label>
+                    <label className="forgot-form-label" htmlFor="password">Enter New Password</label>
                     <input className="forgot-form-input" type="password" id="password" name="password" value={formData.password} onChange={onValueChange} placeholder="Enter a password" required />
                 </div>
 
                 <div className="forgot-form-group">
-                    <label className="forgot-form-label" htmlFor="confirmPassword">Confirm Password:</label>
+                    <label className="forgot-form-label" htmlFor="confirmPassword">Confirm New Password:</label>
                     <input className="forgot-form-input" type="password" id="confirmPassword" name="confirmPassword" value={formData.confirmPassword} onChange={onValueChange} placeholder="Confirm your password" required />
                 </div>
 
