@@ -1,13 +1,16 @@
 /* Container */
 .blog-single-container {
   max-width: 850px;
+  width: 100%; /* Ensures it uses full width on smaller screens */
   margin: 40px auto;
   padding: 30px;
   background: #ffffff;
   border-radius: 18px;
   box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box; /* Prevents padding from breaking width */
 }
+
 
 /* Header Banner */
 .blog-header-banner {
@@ -97,11 +100,13 @@
 }
 
 .blog-image-box img {
-  max-width: 500px;
+  width: 100%; /* Make it responsive */
+  max-width: 100%; /* Prevent overflow */
   height: auto;
   border-radius: 14px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
 }
+
 
 
 /* Content */
@@ -181,6 +186,10 @@
 }
 
 @media screen and (max-width: 480px) {
+  .blog-single-container {
+    padding: 15px;
+  }
+
   .blog-title {
     font-size: 1.7rem;
   }
@@ -189,13 +198,9 @@
     font-size: 0.85rem;
   }
 
-  .blog-save-btn {
-    padding: 5px 12px;
-    font-size: 0.85rem;
-  }
-
+  .blog-save-btn,
   .blog-edit-btn {
-    font-size: 0.85rem;
-    padding: 5px 10px;
+    padding: 4px 10px;
+    font-size: 0.8rem;
   }
 }
