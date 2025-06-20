@@ -1,4 +1,3 @@
-// src/STATIC/Footer.js
 import React from "react";
 import "../../Assets/Styles/Footer.css";
 
@@ -24,10 +23,21 @@ function Footer() {
         <div className="footer-social-techblog">
           <h4>Connect</h4>
           <div className="footer-icons-techblog">
-            <a href="#"><i className="fab fa-facebook-f"></i></a>
-            <a href="#"><i className="fab fa-twitter"></i></a>
-            <a href="#"><i className="fab fa-github"></i></a>
-            <a href="#"><i className="fab fa-linkedin-in"></i></a>
+            <a href="https://your-portfolio-url.com" target="_blank" rel="noopener noreferrer" title="Portfolio">
+              <i className="fas fa-user-circle"></i>
+            </a>
+            <a href="https://www.instagram.com/your_username" target="_blank" rel="noopener noreferrer" title="Instagram">
+              <i className="fab fa-instagram"></i>
+            </a>
+            <a href="mailto:your.email@example.com" title="Email">
+              <i className="fas fa-envelope"></i>
+            </a>
+            <a href="http://github.com/me32face" target="_blank" rel="noopener noreferrer" title="GitHub">
+              <i className="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/akshay-a-023a472a4" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+              <i className="fab fa-linkedin-in"></i>
+            </a>
           </div>
         </div>
       </div>
