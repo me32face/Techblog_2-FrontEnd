@@ -118,3 +118,72 @@
     font-size: 2rem;
   }
 }
+
+.mic-btn {
+  background-color: #00b894;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 184, 148, 0.3);
+}
+
+.mic-btn:hover {
+  background-color: #019875;
+  transform: scale(1.03);
+}
+
+.mic-btn:active {
+  transform: scale(0.98);
+  background-color: #017a63;
+}
+
+.mic-btn.recording {
+  background-color: #d63031;
+  box-shadow: 0 4px 10px rgba(214, 48, 49, 0.4);
+}
+
+
+.npd-suggest-btn {
+  margin-top: 10px;
+  padding: 8px 16px;
+  border: none;
+  background-color: #6c5ce7;
+  color: white;
+  font-weight: 600;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.npd-suggest-btn:hover {
+  background-color: #5b4fd1;
+}
+
+.npd-suggested-tags {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.npd-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.npd-tag {
+  background-color: #dfe6e9;
+  padding: 5px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.npd-tag:hover {
+  background-color: #b2bec3;
+}

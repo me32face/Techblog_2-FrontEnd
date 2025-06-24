@@ -1,8 +1,10 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import { FaSignOutAlt } from 'react-icons/fa';
-import {BrowserRouter,Routes,Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
 import AdminLogin from './Components/ADMIN/AdminLogin';
 import UserLogin from './Components/USER/UserLogin';
 import Navbar from './Components/STATIC/Navbar';
@@ -26,64 +28,61 @@ import LikeDislikeButton from './Components/Common-Pages/LikeDislikeButton';
 import SavedPosts from './Components/USER/SavedPosts';
 import AuthorProfile from './Components/Common-Pages/AuthorProfile';
 import LoadingScreen from './Components/STATIC/LoadingScreen';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-
-
 
 function App() {
-
-  const [isLoading, setIsLoading] = useState(true);
+  const [showInitialLoader, setShowInitialLoader] = useState(false);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    axios.get(process.env.REACT_APP_API_URL + '/ping')
-      .then(() => setIsLoading(false))
+    let shownTimeout = setTimeout(() => {
+      setShowInitialLoader(true); // Show loader only after 3 sec delay
+    }, 3000);
+
+    axios.get(`${process.env.REACT_APP_API_URL}/ping`)
+      .then(() => {
+        clearTimeout(shownTimeout);
+        setIsReady(true);
+      })
       .catch(() => {
-        // retry every 2 seconds until the server responds
+        // Retry every 2 sec until server is up
         const interval = setInterval(() => {
-          axios.get(process.env.REACT_APP_API_URL + '/ping')
+          axios.get(`${process.env.REACT_APP_API_URL}/ping`)
             .then(() => {
               clearInterval(interval);
-              setIsLoading(false);
+              clearTimeout(shownTimeout);
+              setIsReady(true);
             });
         }, 2000);
       });
   }, []);
 
-  if (isLoading) return <LoadingScreen />;
+  if (!isReady && showInitialLoader) {
+    return <LoadingScreen />;
+  }
 
   return (
     <BrowserRouter>
-      <div>
-        <Routes>
-
-          <Route path='/AdminLogin' element={<AdminLogin/>}/>
-          <Route path='/UserLogin' element={<UserLogin/>} />
-          <Route path='/NavBar' element={<Navbar/>} />
-          <Route path='/' element={<Home/>}/>
-          <Route path='/User-Registration' element={<UserRegistration/>}/>
-          <Route path='/ManageUsers' element={<ViewUsers/>}/>
-          <Route path='/ForgotPassword' element={<ForgotPassword/>}/>
-          <Route path='/AllPosts' element={<AllPosts/>}/>
-          <Route path='/NewPost' element={<NewPost/>}/>
-          <Route path='/UserProfile' element={<UserProfile/>}/>
-          <Route path="/post/:id" element={<SinglePost/>}/>
-          <Route path="/EditPost/:id" element={<EditPost/>}/>
-          <Route path='/ManagePosts' element={<ManagePosts/>}/>
-          <Route path='/dashboard' element={<AdminHome/>}/>
-          <Route path='/category-bar' element={<CategoryBar/>}/>
-          <Route path='/category/:category' element={<CategoryPosts/>}/>
-          <Route path='/comment' element={<CommentSection/>}/>
-          <Route path='/saved' element={<SavedPosts/>}/>
-          <Route path="/author/:authorId" element={<AuthorProfile/>}/>
-
-
-
-
-
-
-        </Routes>
-      </div>
+      <Routes>
+        <Route path='/AdminLogin' element={<AdminLogin />} />
+        <Route path='/UserLogin' element={<UserLogin />} />
+        <Route path='/NavBar' element={<Navbar />} />
+        <Route path='/' element={<Home />} />
+        <Route path='/User-Registration' element={<UserRegistration />} />
+        <Route path='/ManageUsers' element={<ViewUsers />} />
+        <Route path='/ForgotPassword' element={<ForgotPassword />} />
+        <Route path='/AllPosts' element={<AllPosts />} />
+        <Route path='/NewPost' element={<NewPost />} />
+        <Route path='/UserProfile' element={<UserProfile />} />
+        <Route path='/post/:id' element={<SinglePost />} />
+        <Route path='/EditPost/:id' element={<EditPost />} />
+        <Route path='/ManagePosts' element={<ManagePosts />} />
+        <Route path='/dashboard' element={<AdminHome />} />
+        <Route path='/category-bar' element={<CategoryBar />} />
+        <Route path='/category/:category' element={<CategoryPosts />} />
+        <Route path='/comment' element={<CommentSection />} />
+        <Route path='/saved' element={<SavedPosts />} />
+        <Route path='/author/:authorId' element={<AuthorProfile />} />
+      </Routes>
     </BrowserRouter>
   );
 }

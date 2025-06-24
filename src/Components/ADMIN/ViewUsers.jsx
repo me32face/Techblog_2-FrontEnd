@@ -53,6 +53,10 @@ function ViewUsers() {
     });
   };
 
+  const formatDate = (dateStr) => {
+    return dateStr ? new Date(dateStr).toLocaleDateString() : "N/A";
+  };
+
   return (
     <div className="vu-page-wrapper">
       <AdminNavbar />
@@ -94,15 +98,19 @@ function ViewUsers() {
               <div className="vu-modal-body">
                 <img
                   src={selectedUser.image || "https://via.placeholder.com/150"}
-                  alt="No Profile Picture"
+                  alt="Profile"
                   className="vu-profile-img"
                 />
                 <div className="vu-profile-info">
-                  <p><strong>Full Name:</strong> {selectedUser.fullName}</p>
-                  <p><strong>Username:</strong> {selectedUser.username}</p>
-                  <p><strong>Email:</strong> {selectedUser.email}</p>
-                  <p><strong>ID:</strong> {selectedUser._id}</p>
-                  <p><strong>Password:</strong> {selectedUser.password}</p>
+                  <p><strong>Full Name:</strong> {selectedUser.fullName || "N/A"}</p>
+                  <p><strong>Username:</strong> {selectedUser.username || "N/A"}</p>
+                  <p><strong>Email:</strong> {selectedUser.email || "N/A"}</p>
+                  <p><strong>Phone:</strong> {selectedUser.phone || "N/A"}</p>
+                  <p><strong>DOB:</strong> {formatDate(selectedUser.dob)}</p>
+                  <p><strong>Bio:</strong> {selectedUser.bio || "N/A"}</p>
+                  <p><strong>Social Links:</strong> {selectedUser.socialLinks || "N/A"}</p>
+                  <p><strong>User ID:</strong> {selectedUser._id}</p>
+                  <p><strong>Password:</strong> {selectedUser.password || "N/A"}</p>
                 </div>
               </div>
               <div className="vu-modal-footer">

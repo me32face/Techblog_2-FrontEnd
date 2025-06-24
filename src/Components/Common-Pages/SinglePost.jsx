@@ -8,6 +8,7 @@ import CommentSection from './CommentSection';
 import LikeDislikeButton from './LikeDislikeButton';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import SummaryBox from './SummaryBox';
 
 
 function SinglePost() {
@@ -134,6 +135,8 @@ function SinglePost() {
             )}
           </div>
         </div>
+
+        <SummaryBox content={post.content}/>
 
         {localStorage.getItem("userId") === post.userDetails?._id && (
           <div className="blog-edit-link">
