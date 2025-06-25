@@ -5,6 +5,8 @@ import Navbar from '../STATIC/Navbar';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import Footer from '../STATIC/Footer';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 function UserRegistration() {
     const Navigate = useNavigate();
@@ -16,8 +18,7 @@ function UserRegistration() {
                 title: 'Warning!',
                 text: 'You have logged in. Cannot access the registration page.',
                 icon: 'warning',
-                confirmButtonText: 'Okay',
-                showConfirmButton: true 
+                confirmButtonText: 'Okay'
             }).then(() => {
                 Navigate("/UserProfile");
             });
@@ -35,7 +36,7 @@ function UserRegistration() {
         image: "",
         bio: "",
         phone: "",
-        dob: "",
+        dob: null,
         socialLinks: ""
     });
 
@@ -56,139 +57,68 @@ function UserRegistration() {
     const isValidPhone = (phone) => /^\d{10}$/.test(phone);
     const isValidPassword = (password) =>
         /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/.test(password);
-    const isPastDate = (dateString) => {
+    const isPastDate = (date) => {
         const today = new Date();
-        const inputDate = new Date(dateString);
-        return inputDate < today;
+        return date && date < today;
     };
 
     const SubmitForm = (e) => {
         e.preventDefault();
 
         if (!isValidFullName(formData.fullName)) {
-            Swal.fire({
-                title: 'Warning!',
-                text: 'Full Name must be at least 3 characters and contain only letters and spaces.',
-                icon: 'warning',
-                confirmButtonText: 'Okay',
-                showConfirmButton: true 
-            });
-            return;
+            return Swal.fire('Warning!', 'Full Name must be at least 3 characters and contain only letters and spaces.', 'warning');
         }
 
         if (!isValidEmail(formData.email)) {
-            Swal.fire({
-                title: 'Warning!',
-                text: 'Please enter a valid email address.',
-                icon: 'warning',
-                confirmButtonText: 'Okay',
-                showConfirmButton: true 
-            });
-            return;
+            return Swal.fire('Warning!', 'Please enter a valid email address.', 'warning');
         }
 
         if (formData.phone && !isValidPhone(formData.phone)) {
-            Swal.fire({
-                title: 'Warning!',
-                text: 'Phone number must be exactly 10 digits.',
-                icon: 'warning',
-                confirmButtonText: 'Okay',
-                showConfirmButton: true 
-            });
-            return;
+            return Swal.fire('Warning!', 'Phone number must be exactly 10 digits.', 'warning');
         }
 
         if (formData.dob && !isPastDate(formData.dob)) {
-            Swal.fire({
-                title: 'Warning!',
-                text: 'Date of Birth must be a date in the past.',
-                icon: 'warning',
-                confirmButtonText: 'Okay',
-                showConfirmButton: true 
-            });
-            return;
+            return Swal.fire('Warning!', 'Date of Birth must be a date in the past.', 'warning');
         }
 
         if (formData.username.length < 4) {
-            Swal.fire({
-                title: 'Warning!',
-                text: 'Username must be at least 4 characters long.',
-                icon: 'warning',
-                confirmButtonText: 'Okay',
-                showConfirmButton: true 
-            });
-            return;
+            return Swal.fire('Warning!', 'Username must be at least 4 characters long.', 'warning');
         }
 
         if (!isValidPassword(formData.password)) {
-            Swal.fire({
-                title: 'Warning!',
-                text: 'Password must contain at least 6 characters, including 1 uppercase letter, 1 number, and 1 special character.',
-                icon: 'warning',
-                confirmButtonText: 'Okay',
-                showConfirmButton: true 
-            });
-            return;
+            return Swal.fire('Warning!', 'Password must contain at least 6 characters, including 1 uppercase letter, 1 number, and 1 special character.', 'warning');
         }
 
         if (formData.password !== formData.confirmPassword) {
-            Swal.fire({
-                title: 'Warning!',
-                text: 'Passwords do not match.',
-                icon: 'warning',
-                confirmButtonText: 'Okay',
-                showConfirmButton: true 
-            });
-            return;
+            return Swal.fire('Warning!', 'Passwords do not match.', 'warning');
         }
 
-        axios
-            .post(`${API_BASE_URL}/userRegistration`, formData, {
-                headers: { "Content-Type": "multipart/form-data" }
-            })
-            .then((up) => {
-                if (up.data.status === 200) {
-                    Swal.fire({
-                        title: 'Success!',
-                        text: 'User Registration Successful. Login now',
-                        icon: 'success',
-                        confirmButtonText: 'Okay',
-                        timer: 2000,
-                        showConfirmButton: true 
-                    }).then(() => {
-                        Navigate("/UserLogin");
-                    });
-                } else if (up.data.status === 404) {
-                    Swal.fire({
-                        title: 'Warning!',
-                        text: 'Email id already exists, try logging in',
-                        icon: 'warning',
-                        confirmButtonText: 'Okay',
-                        timer: 2000,
-                        showConfirmButton: true 
-                    }).then(() => {
-                        Navigate("/UserLogin");
-                    });
-                } else if (up.data.status === 400) {
-                    Swal.fire({
-                        title: 'Warning!',
-                        text: 'An error occurred while saving data. Please try again later.',
-                        icon: 'warning',
-                        confirmButtonText: 'Okay',
-                        showConfirmButton: true 
-                    });
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-                Swal.fire({
-                    title: 'Warning!',
-                    text: 'Something went wrong. Contact admin.',
-                    icon: 'warning',
-                    confirmButtonText: 'Okay',
-                    showConfirmButton: true 
-                });
-            });
+        const payload = new FormData();
+        for (const key in formData) {
+            if (key === "dob" && formData[key]) {
+                payload.append(key, formData[key].toISOString().split("T")[0]);
+            } else {
+                payload.append(key, formData[key]);
+            }
+        }
+
+        axios.post(`${API_BASE_URL}/userRegistration`, payload, {
+            headers: { "Content-Type": "multipart/form-data" }
+        }).then((res) => {
+            const status = res.data.status;
+            if (status === 200) {
+                Swal.fire('Success!', 'User Registration Successful. Login now.', 'success')
+                    .then(() => Navigate("/UserLogin"));
+            } else if (status === 404) {
+                Swal.fire('Warning!', 'Email id already exists, try logging in.', 'warning')
+                    .then(() => Navigate("/UserLogin"));
+            } else {
+                Swal.fire('Warning!', 'An error occurred while saving data. Please try again later.', 'warning');
+            }
+        }).catch((err) => {
+            console.error(err);
+            Swal.fire('Warning!', 'Something went wrong. Contact admin.', 'warning');
+        });
     };
 
     return (
@@ -240,7 +170,17 @@ function UserRegistration() {
 
                         <div className="registration-form-group">
                             <label className='registration-label' htmlFor="dob">Date of Birth:</label>
-                            <input className='registration-input' type="date" id="dob" name="dob" value={formData.dob} onChange={onValueChange} />
+                            <DatePicker
+                                selected={formData.dob}
+                                onChange={(date) => setFormData({ ...formData, dob: date })}
+                                dateFormat="yyyy-MM-dd"
+                                maxDate={new Date()}
+                                placeholderText="Select your date of birth"
+                                className="registration-input"
+                                showMonthDropdown
+                                showYearDropdown
+                                dropdownMode="select"
+                            />
                         </div>
 
                         <div className="registration-form-group">
