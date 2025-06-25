@@ -34,26 +34,35 @@ function App() {
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    let shownTimeout = setTimeout(() => {
-      setShowInitialLoader(true); // Show loader only after 3 sec delay
+    const timeout = setTimeout(() => {
+      setShowInitialLoader(true);
     }, 3000);
 
+    // Initial server ping
     axios.get(`${process.env.REACT_APP_API_URL}/ping`)
       .then(() => {
-        clearTimeout(shownTimeout);
+        clearTimeout(timeout);
         setIsReady(true);
       })
       .catch(() => {
-        // Retry every 2 sec until server is up
         const interval = setInterval(() => {
           axios.get(`${process.env.REACT_APP_API_URL}/ping`)
             .then(() => {
               clearInterval(interval);
-              clearTimeout(shownTimeout);
+              clearTimeout(timeout);
               setIsReady(true);
             });
         }, 2000);
       });
+
+    // Periodic ping to keep server warm
+    const keepAlive = setInterval(() => {
+      axios.get(`${process.env.REACT_APP_API_URL}/ping`);
+    }, 10 * 60 * 1000); // every 10 minutes
+
+    return () => {
+      clearInterval(keepAlive);
+    };
   }, []);
 
   if (!isReady && showInitialLoader) {

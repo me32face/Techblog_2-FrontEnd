@@ -2,48 +2,64 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
 
+    <title>TechBlog | A Space for Tech News</title>
+
+    <!-- Favicon and Web App Settings -->
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <meta name="theme-color" content="#000000" />
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="TechBlog is your go-to platform for the latest updates in technology, coding, and software development." />
+    <meta name="keywords" content="TechBlog, Technology, Programming, React, MERN Stack, Web Development, Coding, Blog" />
+    <meta name="author" content="TechBlog Team" />
+
+    <!-- Font Awesome (No Integrity to Avoid Browser Blocking) -->
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
 
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+    <!-- Open Graph (Social Sharing) -->
+    <meta property="og:title" content="TechBlog | A Space for Tech News" />
+    <meta property="og:description" content="Explore the latest tech articles, blogs, and tutorials from around the world." />
+    <meta property="og:image" content="%PUBLIC_URL%/logo192.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://techblog-2.vercel.app" />
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>TechBlog | A Space for technews |</title>
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="TechBlog | A Space for Tech News" />
+    <meta name="twitter:description" content="Follow the latest in tech with our expert blog content." />
+    <meta name="twitter:image" content="%PUBLIC_URL%/logo192.png" />
   </head>
+
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    <!-- Chatbase Chatbot Embed -->
+    <script>
+      window.chatbaseConfig = {
+        chatbotId: "jFjWUMkJPIePlRvjacnMm",
+        autoOpen: true,
+        autoOpenDelay: 2000,
+        chatTitle: "TechBlog AI",
+        welcomeMessage: "Hi there! How can I help you with TechBlog today?",
+        sessionId: Date.now().toString() + Math.random().toString(36).substring(2)
+      };
+    </script>
+    <script
+      src="https://www.chatbase.co/embed.min.js"
+      id="jFjWUMkJPIePlRvjacnMm"
+      defer>
+    </script>
+    <!-- End Chatbase Chatbot -->
   </body>
 </html>

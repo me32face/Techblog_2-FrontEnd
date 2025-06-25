@@ -10,14 +10,13 @@ import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import SummaryBox from './SummaryBox';
 
-
 function SinglePost() {
   const { id } = useParams();
   const [post, setPost] = useState(null);
+  const [relatedPosts, setRelatedPosts] = useState([]); // 🔹 NEW
   const [isSaved, setIsSaved] = useState(false);
   const API_BASE_URL = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
-
 
   const userDetails = {
     username: localStorage.getItem("username"),
@@ -28,7 +27,9 @@ function SinglePost() {
   useEffect(() => {
     axios
       .post(`${API_BASE_URL}/GetPostById/${id}`)
-      .then((res) => setPost(res.data.data))
+      .then((res) => {
+        setPost(res.data.data);
+      })
       .catch((err) => console.log(err));
   }, [id]);
 
@@ -44,6 +45,21 @@ function SinglePost() {
       .catch((err) => console.log(err));
   }, [id, userDetails.userId]);
 
+  // 🔹 Fetch related posts
+  useEffect(() => {
+    if (post?.title) {
+      axios
+        .post(`${API_BASE_URL}/related-posts`, {
+          text: post.title,
+          currentPostId: post._id
+        })
+        .then((res) => {
+          setRelatedPosts(res.data.data);
+        })
+        .catch((err) => console.error("Related posts error:", err));
+    }
+  }, [post]);
+
   const handleSavePost = () => {
     axios
       .post(`${API_BASE_URL}/saved/save-post`, { userId: userDetails.userId, postId: id })
@@ -57,8 +73,7 @@ function SinglePost() {
           showConfirmButton: false
         });
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
         Swal.fire({
           title: 'Error!',
           text: 'Failed to save post.',
@@ -81,8 +96,7 @@ function SinglePost() {
           showConfirmButton: false
         });
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
         Swal.fire({
           title: 'Error!',
           text: 'Failed to remove saved post.',
@@ -136,7 +150,7 @@ function SinglePost() {
           </div>
         </div>
 
-        <SummaryBox content={post.content}/>
+        <SummaryBox content={post.content} />
 
         {localStorage.getItem("userId") === post.userDetails?._id && (
           <div className="blog-edit-link">
@@ -166,6 +180,18 @@ function SinglePost() {
         <div className="blog-comments">
           <CommentSection postId={post._id} userDetails={userDetails} postAuthorId={post.userId} />
         </div>
+
+        {/* 🔹 Related Posts Section */}
+        {relatedPosts && relatedPosts.length > 0 && (
+          <div className="related-posts-section">
+            <h3>Related Posts</h3>
+            <ul>
+              {relatedPosts.map((p) => (
+                <li key={p._id}>{p.title}</li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
       <Footer />
     </>

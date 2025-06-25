@@ -204,3 +204,45 @@
     font-size: 0.8rem;
   }
 }
+
+
+.related-posts-section {
+  padding: 30px 20px;
+  background-color: #f3f3f3;
+  border-radius: 8px;
+  margin-top: 40px;
+}
+
+.related-posts-section h3 {
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.related-posts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.related-post-card {
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #fff;
+  transition: 0.2s ease;
+}
+
+.related-post-card:hover {
+  background-color: #f9f9f9;
+}
+
+.related-post-card h4 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.related-post-card p {
+  margin: 5px 0 0;
+  color: #555;
+  font-size: 14px;
+}
