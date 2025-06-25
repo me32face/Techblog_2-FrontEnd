@@ -7,20 +7,13 @@ function SummaryBox({ content }) {
   useEffect(() => {
     if (!content) return;
 
-    axios.post(
-    'https://api-inference.huggingface.co/models/facebook/bart-large-cnn',
-    { inputs: content },
-    {
-        headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_HF_TOKEN}`
-        }
-    }
-    ).then(res => {
-      if (res.data && res.data[0] && res.data[0].summary_text) {
+  axios.post(`${process.env.REACT_APP_API_URL}/get-summary`, { content })
+    .then(res => {
+      if (res.data && res.data[0]?.summary_text) {
         setSummary(res.data[0].summary_text);
       }
-    }).catch(err => {
-      console.error("Summary Error:", err);
+    })
+    .catch(() => {
       setSummary("Failed to summarize.");
     });
 
