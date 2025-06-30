@@ -135,7 +135,7 @@ function EditPost() {
             <option value="Web Development">Web Development</option>
             <option value="Cybersecurity">Cybersecurity</option>
             <option value="Gadgets">Gadgets</option>
-            <option value="Mobile Phones">Mobile Phones</option>
+            <option value="Mobile-Phones">Mobile Phones</option>
             <option value="Technology">Technology</option>
           </select>
 

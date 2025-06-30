@@ -8,7 +8,7 @@ const categories = [
   "Web Development",
   "Cybersecurity",
   "Gadgets",
-  "Mobile Phones",
+  "Mobile-Phones",
   "Technology",
   "News",
   "Others",
