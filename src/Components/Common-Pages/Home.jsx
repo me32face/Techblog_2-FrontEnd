@@ -73,7 +73,7 @@ function Home() {
                 ))}
             </div>
           ) : (
-            <p className="text-center">No posts available.</p>
+            <p className="text-center">Loading...</p>
           )}
         </section>
         
